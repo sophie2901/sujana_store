@@ -1,0 +1,22 @@
+{
+  "name": "sujana_store",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sophie2901/sujana_store.git"
+  },
+  "author": "Sujana",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sophie2901/sujana_store/issues"
+  },
+  "homepage": "https://github.com/sophie2901/sujana_store#readme",
+  "description": "",
+  "dependencies": {
+    "bootstrap": "^5.3.7"
+  }
+}
