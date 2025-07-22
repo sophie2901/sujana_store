@@ -1,37 +1,65 @@
-<?php include "./header.php"; ?>
+<?php
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+include "./includes/header.php"; ?>
 
-<main class="form-signin">
-    <section class="vh-100" style="background-color: #508bfc;">
-        <div class="container py-5 h-100">
-            <div class="row d-flex justify-content-center align-items-center h-100">
-                <div class="col-12 col-md-8 col-lg-6 col-xl-5">
-                    <div class="card shadow-2-strong" style="border-radius: 1rem;">
-                        <div class="card-body p-5 text-center">
-                            <form>
-                                <h1 class="h3 mb-3">Sign in</h1>
-                                <div class="form-floating mb-4">
-                                    <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
-                                    <label for="floatingInput">Email address</label>
-                                    <div data-lastpass-icon-root="" style="position: relative !important; height: 0px !important; width: 0px !important; float: left !important;"></div>
+    <!-- Login Form -->
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6 col-lg-5">
+                <div class="card shadow-sm mt-5">
+                    <div class="card-body p-5">
+                        <div class="text-center mb-4">
+                            <i class="bi bi-person-circle fs-1 text-primary"></i>
+                            <h2 class="mt-3">Welcome Back</h2>
+                            <p class="text-muted">Sign in to your account</p>
+                        </div>
+
+                        <form action="./controller/loginController.php" method="POST" enctype="multipart/form-data">
+                            <?php
+                            if (isset($_SESSION['error'])) {
+                                echo "<p style='color:red'>{$_SESSION['error']}</p>";
+                                unset($_SESSION['error']);
+                            }
+                            ?>
+                            <div class="mb-3">
+                                <label for="email" class="form-label">Email Address</label>
+                                <input type="email" class="form-control form-control-lg" name="email" id="email" placeholder="Enter your email" required>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="password" class="form-label">Password</label>
+                                <div class="input-group">
+                                    <input type="password" class="form-control form-control-lg" name="password" id="password" placeholder="Enter your password" required>
+                                    <button class="btn btn-outline-secondary togglePassword" type="button">
+                                        <i class="bi bi-eye"></i>
+                                    </button>
                                 </div>
-                                <div class="form-floating mb-4">
-                                    <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
-                                    <label for="floatingPassword">Password</label>
-                                    <div data-lastpass-icon-root="" style="position: relative !important; height: 0px !important; width: 0px !important; float: left !important;"></div>
-                                </div>
-                                <div class="form-check text-start mb-3">
-                                    <input class="form-check-input" type="checkbox" value="remember-me" id="checkDefault">
-                                    <label class="form-check-label" for="checkDefault">
+                            </div>
+
+                            <div class="d-flex justify-content-between mb-4">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="remember">
+                                    <label class="form-check-label" for="remember">
                                         Remember me
                                     </label>
                                 </div>
-                                <button class="btn btn-primary btn-lg w-100 py-2" type="submit">Sign in</button>
-                            </form>
+                                <a href="#" class="text-decoration-none">Forgot Password?</a>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary btn-lg w-100 mb-3">
+                                <i class="bi bi-box-arrow-in-right me-2"></i>Sign In
+                            </button>
+                        </form>
+
+                        <div class="text-center mt-4">
+                            <p class="text-muted">Don't have an account? <a href="./register.php" class="text-decoration-none">Sign up here</a></p>
                         </div>
                     </div>
                 </div>
             </div>
-    </section>
-</main>
+        </div>
+    </div>
 
-<?php include "./footer.php"; ?>
+<?php include "./includes/footer.php"; ?>

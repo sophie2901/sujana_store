@@ -1,6 +1,6 @@
-<?php include "./header.php"; ?>
+<?php include "./includes/header.php"; ?>
 
-<!-- Breadcrumb -->
+    <!-- Breadcrumb -->
     <div class="container mt-4">
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
@@ -30,10 +30,11 @@
                 <div class="card h-100">
                     <div class="card-body">
                         <h4 class="card-title mb-4">Contact Information</h4>
-                        
+
                         <div class="mb-4">
                             <div class="d-flex align-items-center mb-3">
-                                <div class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center me-3" style="width: 50px; height: 50px;">
+                                <div class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center me-3"
+                                     style="width: 50px; height: 50px;">
                                     <i class="bi bi-geo-alt"></i>
                                 </div>
                                 <div>
@@ -45,7 +46,8 @@
 
                         <div class="mb-4">
                             <div class="d-flex align-items-center mb-3">
-                                <div class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center me-3" style="width: 50px; height: 50px;">
+                                <div class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center me-3"
+                                     style="width: 50px; height: 50px;">
                                     <i class="bi bi-telephone"></i>
                                 </div>
                                 <div>
@@ -57,7 +59,8 @@
 
                         <div class="mb-4">
                             <div class="d-flex align-items-center mb-3">
-                                <div class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center me-3" style="width: 50px; height: 50px;">
+                                <div class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center me-3"
+                                     style="width: 50px; height: 50px;">
                                     <i class="bi bi-envelope"></i>
                                 </div>
                                 <div>
@@ -69,7 +72,8 @@
 
                         <div class="mb-4">
                             <div class="d-flex align-items-center mb-3">
-                                <div class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center me-3" style="width: 50px; height: 50px;">
+                                <div class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center me-3"
+                                     style="width: 50px; height: 50px;">
                                     <i class="bi bi-clock"></i>
                                 </div>
                                 <div>
@@ -109,7 +113,7 @@
                 <div class="card">
                     <div class="card-body p-5">
                         <h4 class="card-title mb-4">Send us a Message</h4>
-                        
+
                         <form>
                             <div class="row">
                                 <div class="col-md-6 mb-3">
@@ -154,7 +158,8 @@
 
                             <div class="mb-3">
                                 <label for="message" class="form-label">Message</label>
-                                <textarea class="form-control" id="message" rows="6" placeholder="Please describe your inquiry in detail..." required></textarea>
+                                <textarea class="form-control" id="message" rows="6"
+                                          placeholder="Please describe your inquiry in detail..." required></textarea>
                             </div>
 
                             <div class="mb-3">
@@ -187,7 +192,9 @@
                                     <i class="bi bi-question-circle text-primary me-2"></i>
                                     How can I track my order?
                                 </h5>
-                                <p class="card-text">Once your order ships, you'll receive a tracking number via email. You can also track your order by logging into your account and viewing your order history.</p>
+                                <p class="card-text">Once your order ships, you'll receive a tracking number via email.
+                                    You can also track your order by logging into your account and viewing your order
+                                    history.</p>
                             </div>
                         </div>
                     </div>
@@ -198,7 +205,9 @@
                                     <i class="bi bi-question-circle text-primary me-2"></i>
                                     What is your return policy?
                                 </h5>
-                                <p class="card-text">We offer a 30-day return policy for most items. Items must be in original condition with tags attached. Some restrictions apply for certain product categories.</p>
+                                <p class="card-text">We offer a 30-day return policy for most items. Items must be in
+                                    original condition with tags attached. Some restrictions apply for certain product
+                                    categories.</p>
                             </div>
                         </div>
                     </div>
@@ -209,7 +218,9 @@
                                     <i class="bi bi-question-circle text-primary me-2"></i>
                                     Do you offer international shipping?
                                 </h5>
-                                <p class="card-text">Yes, we ship to most countries worldwide. Shipping costs and delivery times vary by location. International orders may be subject to customs duties and taxes.</p>
+                                <p class="card-text">Yes, we ship to most countries worldwide. Shipping costs and
+                                    delivery times vary by location. International orders may be subject to customs
+                                    duties and taxes.</p>
                             </div>
                         </div>
                     </div>
@@ -220,7 +231,8 @@
                                     <i class="bi bi-question-circle text-primary me-2"></i>
                                     How do I change or cancel my order?
                                 </h5>
-                                <p class="card-text">Orders can be modified or cancelled within 1 hour of placement. After that, please contact our customer service team for assistance.</p>
+                                <p class="card-text">Orders can be modified or cancelled within 1 hour of placement.
+                                    After that, please contact our customer service team for assistance.</p>
                             </div>
                         </div>
                     </div>
@@ -229,4 +241,4 @@
         </div>
     </div>
 
-<?php include "./header.php"; ?>
+<?php include "./includes/footer.php"; ?>

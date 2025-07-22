@@ -9,8 +9,8 @@
     <link rel="stylesheet" href="./css/bootstrap.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
     <!-- Custom CSS -->
-     <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/style.css">
 </head>
 
 <body>
-    <?php include "./navbar.php";?>
+<?php include "./includes/navbar.php"; ?>
