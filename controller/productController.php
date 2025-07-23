@@ -152,6 +152,34 @@ if (isset($_GET['action'])) {
             header("Location: /admin/product-edit.php?id=" . $_GET['id']);
             exit();
         }
+    } elseif ($_GET['action'] == 'delete') {
+        $productId = $_POST['id'];
+
+        $stmt = $conn->prepare("SELECT image_url FROM products WHERE id = ?");
+        $stmt->bind_param("i", $productId);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        if ($row = $result->fetch_assoc()) {
+            if (!empty($row['image_url']) && file_exists($row['image_url'])) {
+                unlink($row['image_url']); // deletes the image from server
+            }
+        }
+        $stmt->close();
+
+        // Delete from DB
+        $stmt = $conn->prepare("DELETE FROM products WHERE id = ?");
+        $stmt->bind_param("i", $productId);
+
+        if ($stmt->execute()) {
+            $_SESSION['success'] = "Product deleted successfully!";
+        } else {
+            $_SESSION['error'] = "Error deleting product.";
+        }
+
+        $stmt->close();
+        $conn->close();
+        header("Location: /admin/products.php");
+        exit();
     }
 } else {
     $_SESSION['error'] = "Invalid request.";

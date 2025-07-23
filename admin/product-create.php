@@ -70,9 +70,7 @@ include "./includes/header.php";
                     <div class="card-body">
                         <div class="mb-3">
                             <label for="productImages" class="form-label">Upload Images</label>
-                            <input type="file" class="form-control" id="productImages" name="image" accept="image/*">
-                            <div class="form-text">You can upload multiple images. First image will be the main image.
-                            </div>
+                            <input type="file" class="form-control" id="productImage" name="image" accept="image/*">
                         </div>
 
                         <div class="row" id="imagePreview">

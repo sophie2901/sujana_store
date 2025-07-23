@@ -29,7 +29,12 @@ $products = $result->fetch_all(MYSQLI_ASSOC);
                 if (isset($_SESSION['error'])) {
                     echo "<p style='color:red'>{$_SESSION['error']}</p>";
                     unset($_SESSION['error']);
-                } ?>
+                }
+                if (isset($_SESSION['success'])) {
+                    echo "<p style='color:green'>{$_SESSION['success']}</p>";
+                    unset($_SESSION['success']);
+                }
+                ?>
                 <div class="table-responsive">
                     <table class="table table-hover">
                         <thead class="table-dark">
@@ -55,7 +60,8 @@ $products = $result->fetch_all(MYSQLI_ASSOC);
                                             <div>
                                                 <div class="fw-bold"><?php echo $product['name'] ?></div>
                                                 <?php if ($product["description"]): ?>
-                                                    <small class="text-muted"><?php echo substr($product['description'],0, 50); ?>...</small>
+                                                    <small class="text-muted"><?php echo substr($product['description'], 0, 50); ?>
+                                                        ...</small>
                                                 <?php endif; ?>
                                             </div>
                                         </div>
@@ -71,10 +77,13 @@ $products = $result->fetch_all(MYSQLI_ASSOC);
                                                class="btn btn-sm btn-outline-primary">
                                                 <i class="bi bi-pencil"></i>
                                             </a>
-                                            <button class="btn btn-sm btn-outline-danger"
-                                                    onclick="deleteProduct(<?php echo $product['id'] ?>)">
-                                                <i class="bi bi-trash"></i>
-                                            </button>
+                                            <form action="/controller/productController.php?action=delete" method="POST"
+                                                  enctype="multipart/form-data" class="deleteForm">
+                                                <input type="hidden" name="id" value="<?php echo $product['id']; ?>">
+                                                <button type="submit" class="btn btn-sm btn-outline-danger">
+                                                    <i class="bi bi-trash"></i>
+                                                </button>
+                                            </form>
                                         </div>
                                     </td>
                                 </tr>
@@ -89,27 +98,6 @@ $products = $result->fetch_all(MYSQLI_ASSOC);
             </div>
         </div>
     </main>
-    </div>
-    </div>
-
-    <!-- Delete Confirmation Modal -->
-    <div class="modal fade" id="deleteModal" tabindex="-1">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Confirm Delete</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                </div>
-                <div class="modal-body">
-                    Are you sure you want to delete this product? This action cannot be undone.
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                    <button type="button" class="btn btn-danger">Delete Product</button>
-                </div>
-            </div>
-        </div>
-    </div>
 
 
 <?php

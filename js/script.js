@@ -14,10 +14,11 @@ for (let element of togglePasswordButton) {
 }
 
 
-document.getElementById('productImages').addEventListener('change', function(e) {
+document.getElementById('productImage').addEventListener('change', function(e) {
     const preview = document.getElementById('imagePreview');
     preview.innerHTML = '';
 
+        console.log(e.target.files)
     for (let i = 0; i < e.target.files.length; i++) {
         const file = e.target.files[i];
         const reader = new FileReader();
@@ -28,9 +29,6 @@ document.getElementById('productImages').addEventListener('change', function(e) 
             col.innerHTML = `
                         <div class="card">
                             <img src="${e.target.result}" class="card-img-top" style="height: 150px; object-fit: cover;">
-                            <div class="card-body p-2">
-                                <button type="button" class="btn btn-sm btn-outline-danger w-100">Remove</button>
-                            </div>
                         </div>
                     `;
             preview.appendChild(col);
@@ -38,4 +36,17 @@ document.getElementById('productImages').addEventListener('change', function(e) 
 
         reader.readAsDataURL(file);
     }
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+    document.querySelectorAll('.deleteForm').forEach(form => {
+        form.addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            const confirmed = confirm("Are you sure you want to delete?");
+            if (confirmed) {
+                form.submit();
+            }
+        });
+    });
 });

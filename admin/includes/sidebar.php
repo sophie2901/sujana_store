@@ -19,11 +19,6 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-white-50" href="/admin/categories.php">
-                    <i class="bi bi-box-seam me-2"></i>Categories
-                </a>
-            </li>
-            <li class="nav-item">
                 <a class="nav-link text-white-50" href="/admin/users.php">
                     <i class="bi bi-people me-2"></i>Users
                 </a>

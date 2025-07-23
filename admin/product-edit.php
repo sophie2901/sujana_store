@@ -35,14 +35,18 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
             <a href="/admin/products.php" class="btn btn-outline-secondary me-2">
                 <i class="bi bi-arrow-left me-1"></i>Back to Products
             </a>
-            <button class="btn btn-outline-danger">
-                <i class="bi bi-trash me-1"></i>Delete Product
-            </button>
+            <form action="/controller/productController.php?action=delete" method="POST" enctype="multipart/form-data" class="deleteForm">
+                <input type="hidden" name="id" value="<?php echo $product['id']; ?>">
+                <button type="submit" class="btn btn-outline-danger" id="deleteProductButton">
+                    <i class="bi bi-trash me-1"></i>Delete Product
+                </button>
+            </form>
         </div>
     </div>
 
     <!-- Product Form -->
-    <form action="/controller/productController.php?action=update&id=<?php echo $product['id']; ?>" method="POST" enctype="multipart/form-data">
+    <form action="/controller/productController.php?action=update&id=<?php echo $product['id']; ?>" method="POST"
+          enctype="multipart/form-data">
         <div class="row">
             <div class="col-lg-8">
                 <!-- Basic Information -->
@@ -105,7 +109,7 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
                     <div class="card-body">
                         <div class="mb-3">
                             <label for="productImages" class="form-label">Upload Images</label>
-                            <input type="file" class="form-control" id="productImages" name="image" accept="image/*">
+                            <input type="file" class="form-control" id="productImage" name="image" accept="image/*">
                         </div>
 
                         <div class="row" id="imagePreview">
@@ -113,10 +117,6 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
                                 <div class="card">
                                     <img src="<?php echo $product['image_url']; ?>" class="card-img-top"
                                          style="height: 150px; object-fit: cover;">
-                                    <div class="card-body p-2">
-                                        <button type="button" class="btn btn-sm btn-outline-danger w-100">Remove
-                                        </button>
-                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -134,9 +134,16 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
                         <div class="mb-3">
                             <label for="productStatus" class="form-label">Status</label>
                             <select class="form-select" id="productStatus" name="status">
-                                <option value="active" <?php echo $product['status'] == "active" ? "selected" : ""; ?>>Active</option>
-                                <option value="inactive" <?php echo $product['status'] == "inactive" ? "selected" : ""; ?>>Inactive</option>
+                                <option value="active" <?php echo $product['status'] == "active" ? "selected" : ""; ?>>
+                                    Active
+                                </option>
+                                <option value="inactive" <?php echo $product['status'] == "inactive" ? "selected" : ""; ?>>
+                                    Inactive
+                                </option>
                             </select>
+                        </div>
+                        <div class="mb-3">
+                            Created on: <?php echo $product['created_at']; ?>
                         </div>
                     </div>
                 </div>
