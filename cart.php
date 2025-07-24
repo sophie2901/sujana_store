@@ -1,26 +1,32 @@
 <?php include "./includes/header.php";
-$userId = $_SESSION['user_id']; // assume user is logged in
-
-$stmt = $conn->prepare("SELECT p.id AS product_id, p.name, p.price, p.image_url, p.stock, c.quantity, (p.price * c.quantity) AS total_price FROM cart c JOIN products p ON c.product_id = p.id WHERE c.user_id = ?
-");
-
-$stmt->bind_param("i", $userId);
-$stmt->execute();
-$result = $stmt->get_result();
-$cartItems = $result->fetch_all(MYSQLI_ASSOC);
-
+$cartItems = [];
 $subtotal = 0;
 $taxRate = 0.13;
-$shippingCost = 0.00; // Free shipping
+$shippingCost = 0.00;
+$tax = 0;
+$total = 0;
+if (isset($_SESSION['user_id'])) {
+    $userId = $_SESSION['user_id']; // assume user is logged in
 
-if (!empty($cartItems)) {
-    foreach ($cartItems as $item) {
-        $subtotal += $item['price'] * $item['quantity'];
+    $stmt = $conn->prepare("SELECT p.id AS product_id, p.name, p.price, p.image_url, p.stock, c.quantity, (p.price * c.quantity) AS total_price FROM cart c JOIN products p ON c.product_id = p.id WHERE c.user_id = ?
+");
+
+    $stmt->bind_param("i", $userId);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $cartItems = $result->fetch_all(MYSQLI_ASSOC);
+
+     // Free shipping
+
+    if (!empty($cartItems)) {
+        foreach ($cartItems as $item) {
+            $subtotal += $item['price'] * $item['quantity'];
+        }
     }
-}
 
-$tax = $subtotal * $taxRate;
-$total = $subtotal + $tax + $shippingCost;
+    $tax = $subtotal * $taxRate;
+    $total = $subtotal + $tax + $shippingCost;
+}
 ?>
 
     <!-- Breadcrumb -->
@@ -158,91 +164,6 @@ $total = $subtotal + $tax + $shippingCost;
                         <i class="bi bi-shield-check fs-1 text-success mb-2"></i>
                         <h6>Secure Checkout</h6>
                         <small class="text-muted">Your payment information is encrypted and secure</small>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Recently Viewed -->
-        <div class="row mt-5">
-            <div class="col-12">
-                <h4 class="mb-4">You might also like</h4>
-                <div class="row g-4">
-                    <div class="col-lg-3 col-md-6">
-                        <div class="card h-100 shadow-sm">
-                            <img src="/placeholder.svg?height=200&width=250" class="card-img-top" alt="Product">
-                            <div class="card-body">
-                                <h6 class="card-title">Gaming Mouse</h6>
-                                <div class="text-warning mb-2">
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star"></i>
-                                </div>
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <span class="h6 text-primary mb-0">$39.99</span>
-                                    <button class="btn btn-sm btn-outline-primary">Add to Cart</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6">
-                        <div class="card h-100 shadow-sm">
-                            <img src="/placeholder.svg?height=200&width=250" class="card-img-top" alt="Product">
-                            <div class="card-body">
-                                <h6 class="card-title">Wireless Charger</h6>
-                                <div class="text-warning mb-2">
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-fill"></i>
-                                </div>
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <span class="h6 text-primary mb-0">$29.99</span>
-                                    <button class="btn btn-sm btn-outline-primary">Add to Cart</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6">
-                        <div class="card h-100 shadow-sm">
-                            <img src="/placeholder.svg?height=200&width=250" class="card-img-top" alt="Product">
-                            <div class="card-body">
-                                <h6 class="card-title">Phone Case</h6>
-                                <div class="text-warning mb-2">
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star"></i>
-                                </div>
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <span class="h6 text-primary mb-0">$19.99</span>
-                                    <button class="btn btn-sm btn-outline-primary">Add to Cart</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6">
-                        <div class="card h-100 shadow-sm">
-                            <img src="/placeholder.svg?height=200&width=250" class="card-img-top" alt="Product">
-                            <div class="card-body">
-                                <h6 class="card-title">USB Cable</h6>
-                                <div class="text-warning mb-2">
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-half"></i>
-                                </div>
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <span class="h6 text-primary mb-0">$12.99</span>
-                                    <button class="btn btn-sm btn-outline-primary">Add to Cart</button>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>

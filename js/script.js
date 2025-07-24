@@ -14,7 +14,7 @@ for (let element of togglePasswordButton) {
 }
 
 
-document.getElementById('productImage').addEventListener('change', function(e) {
+document.getElementById('productImage')?.addEventListener('change', function(e) {
     const preview = document.getElementById('imagePreview');
     preview.innerHTML = '';
 

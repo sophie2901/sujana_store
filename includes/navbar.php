@@ -21,7 +21,6 @@ if (isset($_SESSION['user_id'])) {
         $cartCount = $row['total_items'] ?? 0;
     }
 }
-$stmt->close();
 ?>
 
 <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top">
@@ -87,25 +86,7 @@ $stmt->close();
                         </button>
                         <ul class="dropdown-menu dropdown-menu-end">
                             <li><h6 class="dropdown-header">Welcome, <?php echo $_SESSION['user_name']; ?>!</h6></li>
-                            <li><a class="dropdown-item" href="#profile">
-                                    <i class="bi bi-person me-2"></i>My Profile
-                                </a></li>
-                            <li><a class="dropdown-item" href="#orders">
-                                    <i class="bi bi-box-seam me-2"></i>My Orders
-                                </a></li>
-                            <li><a class="dropdown-item" href="#addresses">
-                                    <i class="bi bi-geo-alt me-2"></i>Addresses
-                                </a></li>
-                            <li><a class="dropdown-item" href="#payment-methods">
-                                    <i class="bi bi-credit-card me-2"></i>Payment Methods
-                                </a></li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-                            <li><a class="dropdown-item" href="#settings">
-                                    <i class="bi bi-gear me-2"></i>Settings
-                                </a></li>
-                            <li><a class="dropdown-item text-danger" href="./logout">
+                            <li><a class="dropdown-item text-danger" href="/logout.php">
                                     <i class="bi bi-box-arrow-right me-2"></i>Logout
                                 </a></li>
                         </ul>
@@ -151,7 +132,7 @@ $stmt->close();
         <!-- Mobile Navigation Links -->
         <ul class="navbar-nav">
             <li class="nav-item">
-                <a class="nav-link active py-3 border-bottom" href="../index.php">
+                <a class="nav-link active py-3 border-bottom" href="/index.php">
                     <i class="bi bi-house me-2"></i>Home
                 </a>
             </li>
@@ -161,25 +142,14 @@ $stmt->close();
                 </a>
                 <div class="collapse" id="shopSubmenu">
                     <ul class="list-unstyled ps-4">
-                        <li><a class="nav-link py-2" href="#electronics">Electronics</a></li>
-                        <li><a class="nav-link py-2" href="#clothing">Clothing</a></li>
-                        <li><a class="nav-link py-2" href="#home-garden">Home & Garden</a></li>
-                        <li><a class="nav-link py-2" href="#sports">Sports & Outdoors</a></li>
-                        <li><a class="nav-link py-2" href="#all-products">All Products</a></li>
+                        <?php foreach ($categories as $cat) : ?>
+                            <li><a class="nav-link py-2" href="/products.php?category=<?php echo $cat; ?>"><?php echo $cat; ?></a></li>
+                        <?php endforeach; ?>
+                        <li><a class="nav-link py-2" href="/products.php">All Products</a></li>
                     </ul>
                 </div>
             </li>
-            <li class="nav-item">
-                <a class="nav-link py-3 border-bottom" href="#deals">
-                    <i class="bi bi-tag me-2"></i>Deals
-                </a>
-            </li>
             <?php if (empty($_SESSION['user_name'])): ?>
-            <li class="nav-item">
-                <a class="nav-link py-3 border-bottom" href="#about">
-                    <i class="bi bi-info-circle me-2"></i>About
-                </a>
-            </li>
             <li class="nav-item">
                 <a class="nav-link py-3 border-bottom" href="/contact.php">
                     <i class="bi bi-envelope me-2"></i>Contact
@@ -187,7 +157,7 @@ $stmt->close();
             </li>
             <li class="nav-item">
                 <a class="nav-link py-3 border-bottom" href="/cart.php">
-                    <i class="bi bi-cart3 me-2"></i>Cart (3)
+                    <i class="bi bi-cart3 me-2"></i>Cart
                 </a>
             </li>
         </ul>
@@ -199,23 +169,8 @@ $stmt->close();
         </div>
         <?php else: ?>
             <li class="nav-item">
-                <a class="nav-link py-3 border-bottom" href="#orders">
-                    <i class="bi bi-box-seam me-2"></i>My Orders
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link py-3 border-bottom" href="#wishlist">
-                    <i class="bi bi-heart me-2"></i>Wishlist (5)
-                </a>
-            </li>
-            <li class="nav-item">
                 <a class="nav-link py-3 border-bottom" href="/cart.php">
-                    <i class="bi bi-cart3 me-2"></i>Cart (7)
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link py-3 border-bottom" href="#profile">
-                    <i class="bi bi-person me-2"></i>My Profile
+                    <i class="bi bi-cart3 me-2"></i>Cart <?php if ($cartCount > 0): echo '(' . $cartCount . ')'; endif; ?>
                 </a>
             </li>
             <li class="nav-item">
