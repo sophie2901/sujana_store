@@ -86,6 +86,9 @@ if (isset($_SESSION['user_id'])) {
                         </button>
                         <ul class="dropdown-menu dropdown-menu-end">
                             <li><h6 class="dropdown-header">Welcome, <?php echo $_SESSION['user_name']; ?>!</h6></li>
+                            <li><a class="dropdown-item" href="/order-history.php">
+                                    <i class="bi bi-box-seam me-2"></i>My Orders
+                                </a></li>
                             <li><a class="dropdown-item text-danger" href="/logout.php">
                                     <i class="bi bi-box-arrow-right me-2"></i>Logout
                                 </a></li>
@@ -143,7 +146,8 @@ if (isset($_SESSION['user_id'])) {
                 <div class="collapse" id="shopSubmenu">
                     <ul class="list-unstyled ps-4">
                         <?php foreach ($categories as $cat) : ?>
-                            <li><a class="nav-link py-2" href="/products.php?category=<?php echo $cat; ?>"><?php echo $cat; ?></a></li>
+                            <li><a class="nav-link py-2"
+                                   href="/products.php?category=<?php echo $cat; ?>"><?php echo $cat; ?></a></li>
                         <?php endforeach; ?>
                         <li><a class="nav-link py-2" href="/products.php">All Products</a></li>
                     </ul>
@@ -168,16 +172,22 @@ if (isset($_SESSION['user_id'])) {
             <a href="../register.php" class="btn btn-outline-primary">Sign Up</a>
         </div>
         <?php else: ?>
-            <li class="nav-item">
-                <a class="nav-link py-3 border-bottom" href="/cart.php">
-                    <i class="bi bi-cart3 me-2"></i>Cart <?php if ($cartCount > 0): echo '(' . $cartCount . ')'; endif; ?>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link py-3 border-bottom" href="/contact.php">
-                    <i class="bi bi-envelope me-2"></i>Contact
-                </a>
-            </li>
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link py-3 border-bottom" href="/cart.php">
+                        <i class="bi bi-cart3 me-2"></i>Cart <?php if ($cartCount > 0): echo '(' . $cartCount . ')'; endif; ?>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link py-3 border-bottom" href="/order-history.php">
+                        <i class="bi bi-box-seam me-2"></i>My Orders
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link py-3 border-bottom" href="/contact.php">
+                        <i class="bi bi-envelope me-2"></i>Contact
+                    </a>
+                </li>
             </ul>
 
             <!-- Mobile Logout -->
