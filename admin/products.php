@@ -58,7 +58,7 @@ $products = $result->fetch_all(MYSQLI_ASSOC);
                                                  width="50"
                                                  height="50" alt="Product">
                                             <div>
-                                                <div class="fw-bold"><?php echo $product['name'] ?></div>
+                                                <div class="fw-bold"><a class="text-black" href="/admin/product-edit.php?id=<?php echo $product['id'] ?>"><?php echo $product['name'] ?></a></div>
                                                 <?php if ($product["description"]): ?>
                                                     <small class="text-muted"><?php echo substr($product['description'], 0, 50); ?>
                                                         ...</small>
